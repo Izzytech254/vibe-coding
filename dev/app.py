@@ -5,10 +5,8 @@ from werkzeug.utils import secure_filename
 
 # --- Configuration ---
 app = Flask(__name__)
-# Get the absolute path to the directory where app.py is located
-basedir = os.path.abspath(os.path.dirname(__file__))
-# Construct the path to the 'uploads' folder, assuming it's one level up from 'dev'
-UPLOAD_FOLDER = os.path.join(basedir, '..', 'uploads')
+# Construct the path to the 'uploads' folder relative to the project root
+UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = {'csv'}
 
@@ -107,4 +105,4 @@ def reset_race():
     return "Race reset successfully", 200
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002)
+    app.run(debug=True, port=5004)

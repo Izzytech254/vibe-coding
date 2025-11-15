@@ -3,31 +3,17 @@
   "builds": [
     {
       "src": "dev/app.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "dev/templates/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dev/static/**",
-      "use": "@vercel/static"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.9"
+      }
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "app.py"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/dev/$1"
+      "dest": "dev/app.py"
     }
   ]
 }
